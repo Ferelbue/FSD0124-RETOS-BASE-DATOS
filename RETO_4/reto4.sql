@@ -1,0 +1,35 @@
+CREATE DATABASE reto_4;
+USE reto_4;
+
+CREATE TABLE products(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(40) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+	stock INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE orders(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(40) NOT NULL ,
+    description VARCHAR(200),
+    quantity INT NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    product_id INT,
+
+    FOREIGN KEY (product_id) REFERENCES products(id) 
+);
+
+
+CREATE TABLE movements(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(40) NOT NULL ,
+    description VARCHAR(200),
+    posible_uses VARCHAR(200),
+    hour INT NOT NULL,
+    product_id INT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (product_id) REFERENCES products(id) 
+);
